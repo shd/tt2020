@@ -79,8 +79,9 @@ $IsZero$ & $\lambda n.n\ (\lambda x.F)\ T$ & проверка на 0
 \item Умножение
 \item Возведение в степень
 \item Проверка на чётность
-\item Деление на 3
+\item Деление на 3 (могут потребоваться пары и/или вычитания)
 \item Сравнение двух чисел ($IsLess$) — истина, если первый аргумент меньше второго
+(могут потребоваться пары и/или вычитания)
 \end{enumerate}
 
 \item Проредуцируйте выражение и найдите его нормальную форму: 
@@ -98,8 +99,8 @@ $MkPair$ & $\lambda a.\lambda b.(\lambda x.x\ a\ b)$ & создание пары
 $PrL$ & $\lambda p.p\ T$ & левая проекция\\
 $PrR$ & $\lambda p.p\ F$ & правая проекция\\\hline
 $Case$ & $\lambda l.\lambda r.\lambda c.c\ l\ r$ & case для алгебраического типа\\
-$InL$ & $\lambda l.(\lambda x.\lambda y.l\ x\ y)$ & левая инъекция\\
-$InR$ & $\lambda r.(\lambda x.\lambda y.r\ x\ y)$ & правая инъекция\\
+$InL$ & $\lambda l.(\lambda x.\lambda y.x\ l)$ & левая инъекция\\
+$InR$ & $\lambda r.(\lambda x.\lambda y.y\ r)$ & правая инъекция\\
 \end{tabular}
 
 \begin{enumerate}
