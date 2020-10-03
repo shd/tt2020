@@ -49,3 +49,21 @@ https://disi.unitn.it/~bernardi/RSISE11/Papers/curry-howard.pdf
 ### Где почитать
 + Morten Heine B. Sørensen, Pawel Urzyczyn: Lections on the Curry-Howard Isomorphism
 https://disi.unitn.it/~bernardi/RSISE11/Papers/curry-howard.pdf
+
+## Лекция 4
+### Интуиционистская логика второго порядка, система F
++ Логика второго порядка, определения и простая модель
++ Выразимость связок через импликацию и квантор всеобщности
++ Система F
++ Выразительная сила и неразрешимость системы F
++ Экзистенциальные типы
+### Где почитать
++ Morten Heine B. Sørensen, Pawel Urzyczyn: Lections on the Curry-Howard Isomorphism
+https://disi.unitn.it/~bernardi/RSISE11/Papers/curry-howard.pdf
++ Доказательство неразрешимости системы F:
+Aleksy Schubert, Second-Order Unification and Type Inference for Church-style Polymorphism
+POPL '98: Proceedings of the 25th ACM SIGPLAN-SIGACT symposium on Principles of programming languages, January 1998 Pages 279–288
++ Экзистеницальные типы:
+John C. Mitchell, Gordon D. Plotkin, Abstract Types Have Existential Type
+http://homepages.inf.ed.ac.uk/gdp/publications/Abstract_existential.pdf
+
