@@ -251,7 +251,7 @@ $$\infer[\text{Введ. }\with]{\Gamma\vdash \alpha\with \beta}{\Gamma\vdash \a
 $$\infer[x \notin FV(\Gamma)]{\Gamma, x:\tau\vdash x:\tau}{}$$
 
 Найдите лямбда-выражение $N$, что $\not\vdash N:\tau$ в силу ограничения аксиомы
-$$\infer[x \notin FV(\Gamma)]{\Gamma \vdash \lambda x.N:\tau}{\Gamma, x:\sigma \vdash N:\sigma\to\tau}$$
+$$\infer[x \notin FV(\Gamma)]{\Gamma \vdash \lambda x.N:\sigma\to\tau}{\Gamma, x:\sigma \vdash N:\tau}$$
 
 
 \end{enumerate}
