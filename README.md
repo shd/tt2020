@@ -67,3 +67,19 @@ POPL '98: Proceedings of the 25th ACM SIGPLAN-SIGACT symposium on Principles of 
 John C. Mitchell, Gordon D. Plotkin, Abstract Types Have Existential Type
 http://homepages.inf.ed.ac.uk/gdp/publications/Abstract_existential.pdf
 
+## Лекция 5
+### Типовая система Хиндли-Милнера
++ Ранг типа
++ let-полиморифзм
++ Система HM
++ Алгоритм W вывода типов в HM
++ Y-комбинатор в HM
++ Мю-оператор, изо- и эквирекурсивные типы
+### Где почитать
++ Luis Damas and Robin Milner, Principal type-schemes for functional programs
+POPL'82: Proceedings of the 9th ACM SIGPLAN-SIGACT symposium on Principles of programming languages, ACM, pp. 207–212
++ Robin Milner, A theory of type polymorphism in programming (1978) // Journal of Computer and System Sciences, 1978, vol. 17, pp. 348--375
+https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.67.5276
++ Вывод типов с помощью ограничений
+François Pottier, A modern eye on ML type inference; INRIA, September 2005
++ Бенджамин Пирс, Типы в языках программирования. Издательство «Лямбда пресс» & «Добросвет», Москва, 2011
