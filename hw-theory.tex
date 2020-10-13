@@ -439,9 +439,9 @@ data AbstractArray x = AA (forall b . (forall a .
 что $\vdash\phi\rightarrow\sigma$ и $\vdash\sigma\rightarrow\phi$. Для этого:
 \begin{enumerate}
 \item Покажите, что если $\phi$ --- формула ранга 1, то она имеет вид либо $\xi$, либо $\forall x.\psi$, 
-либо $\xi\rightarrow\forall x.\psi$, где $\psi$ --- формула ранга 1, а $\xi$ --- формула ранга 0.
+либо $\xi\rightarrow\psi$, где $\psi$ --- формула ранга 1, а $\xi$ --- формула ранга 0.
 \item Покажите, что если $\phi = \chi\rightarrow\forall x.\psi$, где $x \notin FV(\chi)$, 
-то $\phi\rightarrow(\forall x.\chi\rightarrow\psi)$ и $(\forall x.\chi\rightarrow\psi)\rightarrow\phi$.
+то $\vdash\phi\rightarrow(\forall x.\chi\rightarrow\psi)$ и $\vdash(\forall x.\chi\rightarrow\psi)\rightarrow\phi$.
 \item Покажите, что $\vdash (\forall x.\psi)\rightarrow \forall y.\psi[x:=y]$ и $\vdash (\forall y.\psi[x:=y])\rightarrow\forall x.\psi$,
 если $y$ не входит свободно в $\psi$.
 \item Опираясь на утверждения выше, покажите искомое утверждение.
