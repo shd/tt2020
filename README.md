@@ -83,3 +83,12 @@ https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.67.5276
 + Вывод типов с помощью ограничений
 François Pottier, A modern eye on ML type inference; INRIA, September 2005
 + Бенджамин Пирс, Типы в языках программирования. Издательство «Лямбда пресс» & «Добросвет», Москва, 2011
+
+## Лекция 6
+### Обобщённые типовые системы, лямбда-куб
++ Исчисление конструкций, тип, род, сорт
++ Лямбда-куб
++ Зависимые типы
+### Где почитать
++ Henk Barendregt, Introduction to generalized type systems.
+Journal of Functional Programming 1 (2): 125-154, April 1991
