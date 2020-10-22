@@ -92,3 +92,12 @@ François Pottier, A modern eye on ML type inference; INRIA, September 2005
 ### Где почитать
 + Henk Barendregt, Introduction to generalized type systems.
 Journal of Functional Programming 1 (2): 125-154, April 1991
+
+## Лекция 7
+### Введение в теорию множеств
++ Аксиоматика Цермело-Френкеля
++ Аксиома выбора
++ Ординалы (порядковые числа)
+### Где почитать
++ Пол Дж. Коэн. Теория множеств и континуум-гипотеза. --- М.: Мир, 1969
++ Френкель А.А., Бар-Хиллел И. Основания теории множеств. --- УРСС, 2010

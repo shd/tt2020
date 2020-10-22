@@ -549,6 +549,65 @@ struct NonZero { const static std::enable_if_t<x != T(0), T> value = x; };
 для экзистенциальных типов в системе $F$).
 \item Укажите способ выразить $\Sigma$ через $\Pi$ (также воспользуйтесь идеями для системы $F$).
 \end{enumerate}
+\end{enumerate}
+
+\section*{Домашнее задание №7: <<Теория множеств>>}
+
+\begin{enumerate}
+\item Пусть $a$ и $b$ --- пустые множества. Покажите, что $a$ = $b$.
+
+\item Построение множеств. Покажите, что если $a$, $b$ --- множества, то следующие <<наивные>>
+конструкции тоже являются множествами:
+\begin{enumerate}
+\item $\bigcap a$ (пересечение всех подмножеств множества $a$);
+\item $a \setminus b$ (разность множеств);
+\item $a \uplus b$ (дизъюнктное объединение множеств);
+\item $a \times b$ (декартово произведение множеств: $\{\langle p,q\rangle\ |\ p\in a, q\in b\}$).
+\end{enumerate}
+
+\item Покажите, что если $\langle a,b \rangle = \langle c,d\rangle$, то $a=b$ и $c=d$.
+
+\item \emph{Последовательностью} элементов из $S$ длиной $k$ назовём 
+множество $A$ пар $\langle o, s\rangle$, что:
+\begin{enumerate}
+\item $o\in k$, $s \in S$;
+\item нет таких двух пар $\langle o_1, s_1\rangle$ и $\langle o_2, s_2\rangle$, что $o_1 = o_2$ и $s_1 \ne s_2$;
+\item $\langle 0, s\rangle \in A$ при некотором $s$;
+\item Если $\langle o, s_1 \rangle \in A$ и $o' \in k$, то $\langle o', s_2 \rangle \in A$ при некотором $s_2$.
+\end{enumerate}
+Будем записывать элементы последовательности как $s_o$ и говорить что
+они занумерованы ординалами до $k$.
+
+Пусть $a_0, a_1, a_2, \dots$ --- некоторая убывающая последовательность ординалов,
+занумерованных до некоторого ординала $k$:
+то есть, $a_i$ --- ординал, и, если $i \in j$, то $a_j \in a_i$. 
+Покажите, что тогда ординал $k$ --- конечный.
+
+\item Давайте покажем, что ординалы линейно упорядочены.
+\begin{enumerate}
+\item Пусть $a$ --- ординал. Покажите, что $\varnothing \in a$ или $a = \varnothing$.
+\item Пусть $a$ --- ординал. Покажите, что если $x \in a$, то $x$ --- ординал.
+\item Пусть $a$ и $b$ --- ординалы, и $a \in b$. Покажите, что $a' \in b$ или $a = b$.
+\item Пусть $a$ и $b$ --- два ординала. Покажите, что $a\in b$, или $b \in a$, или $a = b$.
+\end{enumerate}
+
+\item Покажите, что ординалы вполне упорядочены.
+
+\item Пусть $S$ --- множество ординалов: если $x \in S$, то $x$ --- ординал.
+Определите операцию $\sup_{ord} S$ --- строящую минимальный ординал $k$, что
+$x\in k$, если $x \in S$.
+
+\item Упростите по необходимости левую и правую часть равенств на ординалах и проверьте равенства:
+\begin{enumerate}
+\item $(\omega+1)^2 = \omega^2 + \omega\cdot 2 + 1$;
+\item $(\omega+\omega)^2 = \omega^2 \cdot 4$;
+\item $(\omega^2)^\omega = \omega^\omega$;
+\item $1^\omega = \omega$;
+\item $2^\omega = \omega$;
+\item $(\omega+1)\cdot\omega = \omega^2 + \omega$;
+\item $(\omega+1)^\omega = \omega^\omega + 1$.
+\end{enumerate}
+\end{enumerate}
 
 
 %\item Парадокс Жирара. Известно, что если слишком серьёзно расширить теорию, то она станет неразрешимой.
@@ -559,6 +618,5 @@ struct NonZero { const static std::enable_if_t<x != T(0), T> value = x; };
 %(\square,\square), (\triangle,\star), (\triangle,\square)$).
 %\begin{enumerate}
 %\end{enumerate}
-\end{enumerate}
 
 \end{document}
