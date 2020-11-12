@@ -648,7 +648,7 @@ $x\in k$, если $x \in S$.
 
 Докажите (везде предполагается, что $a,b,c : \texttt{Nat}$, если не указано иного):
 \begin{enumerate}
-\item $a < a + b$; то есть, определите функцию\\\verb!\func n_less_sum (a b : Nat) : NatLess a (a Nat.+ b)!
+\item $a < a + b + 1$; то есть, определите функцию\\\verb!\func n_less_sum (a b : Nat) : NatLess a (a Nat.+ suc b)!
 \item Если $a < b$, то $a + c < b + c$
 \item Если $a < b$ и $c < d$, то $a \cdot c < b \cdot d$
 \item $a < 2^a$
