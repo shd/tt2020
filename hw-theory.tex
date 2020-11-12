@@ -8,6 +8,7 @@
 \usepackage{stmaryrd}
 \usepackage{cmll}
 \usepackage{mathrsfs}
+\usepackage{hyperref}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{proof}
 \usepackage{tikz}
@@ -395,7 +396,7 @@ $$\begin{array}{l}\textbf{abstype }\alpha\textbf{ with }x:
   \alpha\with((\alpha\rightarrow int\rightarrow\alpha)\with(\alpha\rightarrow int\with\alpha)) \textbf{ is }intstack\textbf{ in}\\
 let\ st^\alpha = Pr_L\ x\ in\\
 let\ st^\alpha = (Pr_L\ (Pr_R\ x))\ st\ 12\ in\\
-Pr_L\ ((Pr_R\ (Pr_R\ x))\ st)$$
+Pr_L\ ((Pr_R\ (Pr_R\ x))\ st)
 \end{array}$$
 %    let st: α = PrL int_stack in              // initialize
 %    let st: α = (PrL (PrR int_stack)) 12 in   // push 12 into stack
@@ -589,7 +590,7 @@ struct NonZero { const static std::enable_if_t<x != T(0), T> value = x; };
 \item Пусть $a$ --- ординал. Покажите, что если $x \in a$, то $x$ --- ординал.
 \item Пусть $a$ и $b$ --- ординалы, и $a \in b$. Покажите, что $a' \in b$ или $a = b$.
 \item Пусть $a$ и $b$ --- два ординала. Покажите, что $a\in b$, или $b \in a$, или $a = b$.
-\end{enumerate}
+\end{enumerate}                                      
 
 \item Покажите, что ординалы вполне упорядочены.
 
@@ -609,6 +610,13 @@ $x\in k$, если $x \in S$.
 \end{enumerate}
 \end{enumerate}
 
+%\section*{Домашнее задание №8: <<Мощность множеств>>}
+%\begin{enumerate}
+%\item Пусть $f: A\rightarrow B$ и $g: B\rightarrow A$ --- инъективные функции.
+%Пусть $C_0 = A\setminus g(B)$, $C_{n+1} = g(f(C_n))$, $C = \bigcup_i C_i$, и пусть
+%$$h(x) = \left\{\begin{array}{ll}f(x),& x \notin C\\g^{-1}(x),& x \in C\end{array}\right.$$
+%
+%Покажите, что h(x) инъективна и сюрьективна.
 
 %\item Парадокс Жирара. Известно, что если слишком серьёзно расширить теорию, то она станет неразрешимой.
 %
@@ -618,5 +626,58 @@ $x\in k$, если $x \in S$.
 %(\square,\square), (\triangle,\star), (\triangle,\square)$).
 %\begin{enumerate}
 %\end{enumerate}
+
+\section*{Домашнее задание №8: <<Язык Аренд>>}
+\begin{enumerate}
+\item Равенство. Прочтите описание равенства в языке Аренд 
+\url{https://arend-lang.github.io/documentation/tutorial/PartI/idtype}
+(и при необходимости другие части описания языка)
+и выполните следующие задания:
+\begin{enumerate}
+\item Докажите, что $\texttt{left}=\texttt{right}$
+\item Докажите, что если $a,b : \texttt{Nat}$ и $a = b$, то $\neg (a \ne b)$
+\item Докажите, что если $a,b : \texttt{Nat}$, то $a = b \vee a \ne b$
+\end{enumerate} 
+
+\item Определим отношение <<меньше>> на натуральных числах так:
+\begin{verbatim}
+\data NatLess (a b : Nat) \with
+  | 0, suc m => natless_less
+  | suc m, suc n => natless_next (NatLess m n)
+\end{verbatim}
+
+Данный тип изоморфен утверждению $a < b$. Например, утверждение $1 < 3$ доказывается так:
+\verb!\func zerolesszero : NatLess 1 3 => natless_next (natless_less)!
+
+Докажите (везде предполагается, что $a,b,c : \texttt{Nat}$, если не указано иного):
+\begin{enumerate}
+\item $a < a + b$; то есть, определите функцию\\\verb!\func n_less_sum (a b : Nat) : NatLess a (a Nat.+ b)!
+\item Если $a < b$, то $a + c < b + c$
+\item Если $a < b$ и $c < d$, то $a \cdot c < b \cdot d$
+\item $a < 2^a$
+\item Транзитивность: если $a < b$ и $b < c$, то $a < c$
+\item Определите аналогичное отношение <<меньше или равно>> и докажите его антисимметричность
+\item Если $a \ne b$, то $a < b \vee b < a$
+\item Докажите, что $a < b$ тогда и только тогда, когда \verb!a < b! в смысле стандартных определений Аренда.
+\end{enumerate}
+
+\item Аналогично предыдущему упражнению, определите тип данных \verb!Even!
+(<<чётное натуральное число>>) и докажите следующие утверждения:
+\begin{enumerate}
+\item Если $n$ --- чётное, то $\exists x.x + x = n$
+\item Если $n$ таково, что $\exists x.x+x = n$, то $n$ --- чётное
+\item Если $\exists x.x + x + 1 = n$, то неверно, что $n$ --- чётное
+\end{enumerate}
+
+\item Определите отношение (тип) <<делится нацело>> и докажите:
+\begin{enumerate}
+\item Рефлексивность, транзитивность и антисимметричность отношения
+\item $a \cdot b$ делится нацело на $a$ и на $b$
+\item Если $a$ делится нацело на $b$, то $\exists t.a = b \cdot t$
+\item Если $\exists t.a = b * t$, то $a$ делится нацело на $b$
+\item Если $a < b$, то невозможно, чтобы $a$ делилось нацело на $b$
+\end{enumerate}
+
+\end{enumerate}
 
 \end{document}
