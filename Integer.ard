@@ -1,0 +1,142 @@
+\import Arith.Nat
+\import Paths
+\import Paths.Meta
+
+{-
+   О Сетоидах, на языке Аренд. Сетоид - не самое близкое к Аренду понятие, но
+   в силу своей прямолинейности может помочь понять происходящее.
+
+   Зададимся вопросом: как представлять множества. Например, \Type - множество?
+
+   "Акс. выбора" в нашем курсе:
+       D: дизъюнктное; xD непусто. xD -- подмн. \cup D и пересекается
+       с каждым элементом из D ровно в одном эл-те.
+
+   "Акс. выбора", пример и близкая переформулировка:
+       По семейству множеств можно построить функцию, которая по
+       множеству возвращает его элемент.
+
+       D1+D2+D3+...   => {d1 \in D1, d2 \in D2, d3 \in D3, ...}
+
+       {A={1,2};B={1,2};C={2,3};D={1,2,3,4}}
+       f(S)={A=>1,B=>1,C=>2,D=>1
+
+   "Акс выбора", ещё переформулируем:
+       Если дан R, что для любого x: существует y, <x,y> \in R, то
+       существует функция f: A->B, что <x,f(x)> \in R
+
+       {<A,1>,<A,2>,<B,1>,<B,2>,<C,2>,<C,3>,<D,1>,<D,2>,<D,3>,<D,4>}
+       f(S)={A=>1,B=>1,C=>2,D=>1   <T,f(T)> \in R
+
+   "Типы -- это множества?"
+       R : A & B
+       Переписанная аксиома выбора:
+       (\forall x:A . \exists y:B . (x,y) \in R) -> (\exists f: (A->B). \forall x:A . (x, f x) \in R)
+       (\Pi (x : A) . \Sigma (y : B) . (x,y) \in R)  ->  (\Sigma (f : A -> B) . \Pi (x : A) . (x, f x) \in R)
+
+       Несложно увидеть, что такое должно доказываться - она совершенно конструктивна.
+
+   Давайте в качестве более близкого аналога для множеств рассмотрим сетоиды -
+   пары из носителя и отношения эквивалентности на носителе.
+   Вообще, носитель + ограничения - совершенно типичная математическая структура.
+
+   Например, сетоид для целых чисел:
+   < Nat * Nat, ~ >
+     <x1,y1> ~ <x2,y2>, если x1+y2 = x2+y1
+
+     Целое число: (Z = N*N)/~
+     <x1,y1> ~ <x2,y2>, если x1+y2 = x2+y1
+
+     <5,5> ~ <0,0> ~ <6,6>
+     <3,1> ~ <2,0>
+     <1,4> ~ <0,3> ~ <2,5>
+
+     Канонические целые числа:
+     <n,0> и <0,n>
+       +n      -n
+       +0 = -0 по определению.
+
+   Попробуем это как-то сформулировать на Аренде.
+-}
+
+{- Тип для носителя целых - пары натуральных -}
+\record Integer-carrier {
+    | pos : Nat
+    | neg : Nat
+}
+
+{-
+   Эквивалентность на целых как на паре натуральных, "интерфейс" сетоида.
+   Сформулируем иначе: любое значение типа Integer-eq является реализацией интерфейса сетоида.
+ -}
+\record Integer-eq {
+    {-
+       Отношение - это функция, по паре чисел возвращающая некоторый тип (=утверждение).
+       Этот тип может быть обитаем (значит, утверждение истинно, т.е. представления чисел
+       состоят в отношении) или необитаем (ложно, представления чисел в отношении не состоят).
+     -}
+    | relation : \Pi (x y : Integer-carrier) -> \Type
+
+    {- Доказательство того, что данное отношение -- действительно отношение -}
+    | reflexive : \Pi (x : Integer-carrier) -> relation x x
+    | symmetric : \Pi (x y : Integer-carrier) (r : relation x y) -> relation y x
+    | transitive : \Pi (x y z : Integer-carrier) (r1 : relation x y) (r2 : relation y z) -> relation x z
+}
+
+{-
+    Определение отношения. Напомним, что x и y состоят в отношении тогда и только тогда,
+    когда утверждение integer-eq-relation x y обитаемо.
+    То есть, когда выполнено соотношение x.neg + y.pos = x.pos + y.neg
+ -}
+\func integer-eq-relation (x y : Integer-carrier) : \Type =>
+    x.neg Nat.+ y.pos = x.pos Nat.+ y.neg
+
+\func prove-reflexive (x : Integer-carrier) : x.neg Nat.+ x.pos = x.pos Nat.+ x.neg =>
+    NatSemiring.+-comm
+
+{-
+  Магия с rewrite:
+  rewrite (x : a = b) A    =>   B (вместо a подставлено b)
+
+  Например, rewrite NatSemring.+-comm из
+  y.pos Nat.+ x.neg = y.neg Nat.+ x.pos сделает
+  x.neg Nat.+ y.pos = y.neg Nat.+ x.pos
+
+  y.p+x.n=x.n+y.p
+  x.n+y.p=x.p+y.n    =>   inv (y.p+x.n=y.n+x.p) ==== y.n+x.p=y.p+x.n
+ -}
+
+\func prove-symmetric (x y : Integer-carrier) (r : integer-eq-relation x y) : integer-eq-relation y x =>
+    inv (rewrite (NatSemiring.+-comm)
+        (rewrite (NatSemiring.+-comm  {y.neg} {x.pos})
+         r))
+
+{-  x.n+y.p=x.p+y.n
+    y.n+z.p=y.p+z.n
+    ===============
+    x.n+z.p=x.p+z.n
+  -}
+\func prove-transitive (x y z : Integer-carrier) (r1 : integer-eq-relation x y) (r2 : integer-eq-relation y z) :
+    integer-eq-relation x z => {?}
+
+\func mk-integer-eq : Integer-eq =>
+    \new Integer-eq {
+        | relation => integer-eq-relation
+        | reflexive => prove-reflexive
+        | symmetric => prove-symmetric
+        | transitive => prove-transitive
+    }
+
+\record Integer-setoid {
+    | eq : Integer-eq
+}
+
+\func mk-setoid : Integer-setoid => \new Integer-setoid { | eq => mk-integer-eq }
+
+{- пример задания записи -}
+\func strange_zero (x : Nat) : Integer-carrier => \new Integer-carrier { | pos => 2 | neg => 2 }
+\func zero_pos (x : Integer-carrier) : Nat => x.pos
+
+\func make_positive (x : Nat) : Integer-carrier => \new Integer-carrier { | pos => x | neg => 0 }
+\func make_negative (x : Nat) : Integer-carrier => \new Integer-carrier { | pos => 0 | neg => x }
+
