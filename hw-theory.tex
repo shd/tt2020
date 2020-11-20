@@ -677,4 +677,108 @@ $x\in k$, если $x \in S$.
 
 \end{enumerate}
 
+\section*{Домашнее задание №9: <<Ещё доказательства>>}
+\begin{enumerate}
+\item Докажите недостающее свойство транзитивности \verb!prove-transitive!:
+
+\begin{verbatim}
+\record Integer-carrier {
+    | pos : Nat
+    | neg : Nat
+}
+
+\func integer-eq-relation (x y : Integer-carrier) : \Type =>
+    x.neg Nat.+ y.pos = x.pos Nat.+ y.neg
+
+\func prove-transitive (x y z : Integer-carrier) 
+    (r1 : integer-eq-relation x y) (r2 : integer-eq-relation y z) :
+    integer-eq-relation x z => {?}
+\end{verbatim}
+
+\item Как уже упоминалось, $\Pi$-типы соответствуют кванторам всеобщности,
+а $\Sigma$-типы --- кванторам существования.
+
+Как известно, доказательством квантора всеобщности является функция; докажем
+$\forall x^\texttt{Int}.x=x$:
+
+\verb!\func proof1 : \Pi (x : Int) -> x = x => \lam x => idp!
+
+А доказательством квантора существования является пара из примера и доказательства
+его соответствия условию; докажем, что
+$\forall x.\exists y.y = x^2$:
+
+\verb!\func proof2 : \Pi (x : Int) -> \Sigma (y : Int) (y = x * x) => \lam x => (x * x, idp)! 
+
+Если мы доказываем утверждение, следующее из выражения под квантором существования,
+и нам надо воспользоваться соответствующим примером или доказательством, мы можем на них сослаться.
+Ниже $p$ --- это доказательство $\exists x^\texttt{Nat}.x^2=77$, и элементы пары индексируются 
+натуральными числами; $p.1$ --- это пример значения, а $p.2$ --- доказательство утверждения
+$(p.1)^2 = 77$:
+
+\begin{verbatim}
+\func proof3 : (\Sigma (x : Nat) (x Nat.* x = 77)) -> (\Sigma (x : Nat) (77 = x Nat.* x)) =>
+  \lam p => (p.1, Paths.inv p.2)
+\end{verbatim}
+
+Обратим внимание, что пара, доказывающая существование --- <<зависимая>>: второй элемент пары 
+доказывает утверждение с уже подставленным первым аргументом:
+
+\begin{verbatim}
+\func five_eq_five : 5 = 5 => idp {Nat} {5}
+\func proof4 : \Sigma (x : Nat) (x = 5) => (5, five_eq_five)
+\end{verbatim}
+
+Проверьте, какие из следующих утверждений доказуемы (и тогда постройте
+соответствующее доказательство), а какие нет (и тогда опровергните их, тоже на Аренде): 
+
+\begin{enumerate}
+\item $(\exists x.\exists y.\phi) \rightarrow (\exists y.\exists x.\phi)$ и
+$(\forall x.\forall y.\phi) \rightarrow (\forall y.\forall x.\phi)$
+\item $(\forall x.\exists y.\phi) \rightarrow (\exists y.\forall x.\phi)$  и наоборот,
+$(\exists y.\forall x.\phi) \rightarrow (\forall x.\exists y.\phi)$
+\item $(\neg\forall x.\phi) \rightarrow (\exists x.\neg \phi)$ и в обратную сторону.
+\end{enumerate}
+
+\item Вспомним одну из формулировок аксиомы выбора: если задано семейство
+непустых подмножеств $\{B_a\}_{a \in A}$, 
+то существует функция $f: A \rightarrow B$, что $\forall a. a \in A \rightarrow f (a) \in B_a$.
+
+Давайте представим семейство $B_a$ отношением $Q \subseteq A \times B$, 
+сопоставляющим элементу $a \in A$ множество $\{ b \in B\ |\ \langle a,b \rangle \in Q\}$.
+Тогда налагаемое на функцию $f$ условие становится таким:
+$$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
+что при трактовке множеств как типов приводит к следующей <<наивной аксиоме выбора>>:
+
+\begin{verbatim}
+\func naiveChoiceAxiom (A B : \Type) (Q : A -> B -> \Type)
+                       (allInhabited : \Pi (a : A) -> \Sigma (b : B) (Q a b))
+  : \Sigma (f : A -> B) (\Pi (a : A) -> Q a (f a))
+\end{verbatim}
+
+Докажите эту <<аксиому>>.
+
+\item Двоичное дерево
+
+\begin{verbatim}
+\data Tree
+  | node Tree Tree
+  | leaf
+
+\func leafs (t : Tree) : Nat \elim t
+  | leaf => 1
+  | node l r => leafs l + leafs r
+\end{verbatim}
+
+\begin{enumerate}
+\item Докажите, что в полном двоичном дереве глубины $n$ всего $2^n$ листьев. 
+\item Докажите, что всего два дерева имеют в точности 3 листа; при этом давайте
+понимать множества как списки (из стандартной библиотеки). То есть, существует
+список из двух деревьев, что: (а) любое дерево из списка имеет 3 листа; (б)
+любое дерево с 3 листами принадлежит списку; (в) все элементы списка различны.
+\item Найдите, сколько деревьев имеет глубину $\le 3$ --- и докажите соответствующее утверждение.
+\item Найдите, сколько деревьев имеет глубину $\le n$ --- и докажите соответствующее утверждение.
+\end{enumerate}
+
+\end{enumerate}
+
 \end{document}
