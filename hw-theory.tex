@@ -781,4 +781,51 @@ $$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
 
 \end{enumerate}
 
+\section*{Домашнее задание №10: <<Умеренно-простые доказательства>>}
+\begin{enumerate}
+\item Равенства, неравенства, логика.
+\begin{enumerate}
+\item Докажите, что $a \le b$ (в смысле определения из стандартной библиотеки)
+тогда и только тогда, когда $a = b$ или $a < b$.
+\item Докажите, что если $a,b,k \in \mathbb{N}$, $a \cdot b = k$ и $a = k$, то $b = 1$.
+\item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a + b < k$, то $a < k$ и $b < k$.
+\item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a \cdot b < k$, то $a \le k$ и $b \le k$.
+\end{enumerate}
+
+\item Простые числа.
+\begin{enumerate}
+\item Определите понятие простого числа в Аренде.
+\item Докажите, что любое число из Nat --- либо 0, либо 1, либо простое, либо составное.
+\item Докажите, что 2 --- единственное простое чётное число.
+\item Докажите, что для любого списка различных простых чисел найдётся простое число, не принадлежащее ему.
+\item Докажите, что если сумма двух простых чисел --- простая, то одно из чисел равно 2.
+\item Докажите, что никакие два различных простых числа друг на друга не делятся.
+\item Если $p$ — простое, и $p$ делит $ab$, то $p$ делит $a$ или $b$.
+\end{enumerate}
+
+\item Рассмотрим следующее доказательство уникальности элементов списка:
+\begin{verbatim}
+\func not-member (A : \Type) (elem : A) (l : List A) : \Type \elim l
+  | nil => \Sigma
+  | :: hd tl => \Sigma (Not (hd = elem)) (not-member A elem tl)
+
+\func unique-list (A : \Type) (l : List A) : \Type \elim l
+  | nil => \Sigma
+  | :: hd tl => \Sigma (not-member A hd tl) (unique-list A tl)
+\end{verbatim}
+
+Докажем, что список $[0,1,2]$ состоит из уникальных элементов:
+\begin{verbatim}
+\func r-unique => unique-list Nat (0 :: 1 :: 2 :: nil)
+\func x : r-unique => ((contradiction, (contradiction, ())), ((contradiction, ()), ((), ())))
+\end{verbatim}
+
+\begin{enumerate} 
+\item Напишите функцию, строящую список \verb!b! натуральных чисел от 0 до n и доказательство\\ \verb!unique-list Nat b!.
+\item Покажите, что если $a_0 < a_1 < \dots < a_n$, то список $[a_0,a_1,\dots,a_n]$ уникальный.
+\item Покажите, что если $n \ge 2$ и $a_0 \ne a_1$, $a_1 \ne a_2$, ..., $a_{n-1} \ne a_n$, то необязательно, что список
+$[a_0,a_1,\dots,a_n]$ --- уникальный.
+\end{enumerate}
+\end{enumerate}
+
 \end{document}
