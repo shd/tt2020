@@ -787,6 +787,8 @@ $$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
 \begin{enumerate}
 \item Докажите, что $a \le b$ (в смысле определения из стандартной библиотеки)
 тогда и только тогда, когда $a = b$ или $a < b$.
+\item Докажите, что если $a,b \in \mathbb{N}$ и $a \le b \le a + 3$, то 
+$b = a \vee b = a+1 \vee b = a+2 \vee b = a+3$.
 \item Докажите, что если $a,b,k \in \mathbb{N}$, $a \cdot b = k$ и $a = k$, то $b = 1$.
 \item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a + b < k$, то $a < k$ и $b < k$.
 \item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a \cdot b < k$, то $a \le k$ и $b \le k$.
@@ -802,6 +804,8 @@ $$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
 \item Докажите, что никакие два различных простых числа друг на друга не делятся.
 \item Если $p$ — простое, и $p$ делит $ab$, то $p$ делит $a$ или $b$.
 \end{enumerate}
+
+\item Докажите, что 6 и 28 --- единственные совершенные числа от 1 до 100.
 
 \item Рассмотрим следующее доказательство уникальности элементов списка:
 \begin{verbatim}
@@ -823,7 +827,7 @@ $$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
 \begin{enumerate} 
 \item Напишите функцию, строящую список \verb!b! натуральных чисел от 0 до n и доказательство\\ \verb!unique-list Nat b!.
 \item Покажите, что если $a_0 < a_1 < \dots < a_n$, то список $[a_0,a_1,\dots,a_n]$ уникальный.
-\item Покажите, что если $n \ge 2$ и $a_0 \ne a_1$, $a_1 \ne a_2$, ..., $a_{n-1} \ne a_n$, то необязательно, что список
+\item Покажите, что если $n \ge 2$ и $a_k \ne a_{k+1}$ при $0 \le k < n$, то необязательно, что список
 $[a_0,a_1,\dots,a_n]$ --- уникальный.
 \end{enumerate}
 \end{enumerate}
