@@ -136,3 +136,28 @@ https://telegra.ph/HoTT-dlya-chajnikov-09-09
 ### Где почитать
 + https://github.com/shd/tt2020/blob/master/Integer.ard
 + https://arend-lang.github.io/documentation/tutorial
+
+## Лекция 11
+### Пропозициональное усечение, теорема Диаконеску
++ Вселенные Type, Prop, Set
++ Усечённые типы данных (truncated), фактор-множество
++ Аксиома выбора
++ Теорема Диаконеску, неформальное и формальное доказательства
+
+## Лекция 12
+### Обзор альтернативных подходов к формальным доказательствам
++ Языки для доказательств (Agda).
++ Языки с зависимыми типами для программирования (Idris). Реализация printf на Idris.
++ Язык Coq, вселенные Prop и Set, выделение программ из доказательств.
++ SMT-решатели, уточняющие (refinement) типы, язык F-star, система Frama C.
+
+## Лекция 13
+### Линейные и уникальные типы
++ Линейная логика, комбинаторная логика (базис BCKW)
++ Линейная и интуиционистская логика (система, предложенная Филипом Вадлером)
++ Уникальные типы (построенные на основе логики 2 порядка)
+### Где почитать
++ Philip Wadler, A taste of linear logic. 2014 year revision
++ Edsko de Vries, Rinus Plasmeijer, David M Abrahamson, Uniqueness Typing Simplified.
+Implementation and Application of Functional Languages, 19th International Workshop, 
+IFL 2007, Freiburg, Germany, September 27-29, 2007.
