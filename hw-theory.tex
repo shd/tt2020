@@ -790,7 +790,7 @@ $$\forall a.a \in A \rightarrow \langle a, f (a) \rangle \in Q$$
 \item Докажите, что если $a,b \in \mathbb{N}$ и $a \le b \le a + 3$, то 
 $b = a \vee b = a+1 \vee b = a+2 \vee b = a+3$.
 \item Докажите, что если $a,b,k \in \mathbb{N}$, $a \cdot b = k$ и $a = k$, то $b = 1$.
-\item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a + b < k$, то $a < k$ и $b < k$.
+\item Докажите, что если $a,b,k \in \mathbb{N}$ и $a + b < k$, то $a < k$ и $b < k$.
 \item Докажите, что если $a,b,k \in \mathbb{N}_0$ и $a \cdot b < k$, то $a \le k$ и $b \le k$.
 \end{enumerate}
 
@@ -830,6 +830,89 @@ $b = a \vee b = a+1 \vee b = a+2 \vee b = a+3$.
 \item Покажите, что если $n \ge 2$ и $a_k \ne a_{k+1}$ при $0 \le k < n$, то необязательно, что список
 $[a_0,a_1,\dots,a_n]$ --- уникальный.
 \end{enumerate}
+\end{enumerate}
+
+\section*{Домашнее задание №11: <<Линейная логика и уникальные типы>>}
+
+\begin{enumerate}
+\item Как известно, интуиционистские связки могут быть выражены в линейном исчислении.
+Покажите соответствующие интуиционистские аксиомы для следующих выражений интуиционистских связок
+через линейные:
+\begin{enumerate}
+\item $A \rightarrow B :=\ !A \multimap B$
+\item Интуиционистская дизъюнкция: $A + B :=\ !A \oplus !B$
+\item Интуиционистская конъюнкция: $A \times B := A \with B$
+\item Альтернативная конъюнкция: $A \times B :=\ !A \otimes !B$ 
+\item Покажите, что альтернативная конъюнкция влечёт обычную, но не наоборот: $\langle!A \otimes !B\rangle \vdash A \with B$,
+но $\langle A \with B\rangle \not\vdash \ !A \otimes !B$.
+\end{enumerate}
+
+\item Покажите следующие линейные тождества:
+\begin{enumerate}
+\item $\vdash \phi \multimap \phi$
+\item $\vdash \ !\phi \multimap \ !!\phi$
+\end{enumerate}
+
+\item Дистрибутивность
+\begin{enumerate}
+\item Выполняется ли дистрибутивность для $(\&)$ и $(\oplus)$?
+\item Выполняется ли дистрибутивность для $(\&)$ и $(\otimes)$?
+\end{enumerate}
+
+\item Уникальные типы. Рассмотрим интерфейс массива в линейных типах:
+
+$$
+\begin{array}{rl}
+new: & !Val \multimap (Arr \multimap Arr \otimes X) \multimap X\\
+lookup: & !Ix \multimap Arr \multimap Arr\ \otimes \ !Val\\
+update: & !Ix \multimap \ !Val \multimap Arr \multimap Arr\\
+\end{array}
+$$
+
+Определите соответствующий интерфейс в уникальных типах.
+
+\item Типизируйте следующие конструкции в системе с уникальными типами:
+\begin{enumerate}
+\item $\lambda a.\lambda b.b\ a$
+\item $\lambda a.a\ a$
+\item $\lambda a.\lambda b.a$
+\item $\lambda a.\lambda b.\lambda c.a\ c\ (b\ c)$
+\end{enumerate}
+
+\end{enumerate}
+
+
+\section*{Задания на баллы}
+Каждое задание будет оценено в 10 баллов, сдавать можно любые, в любой момент. Решением является
+программа на языке Аренд.
+
+\begin{enumerate}
+\item Рассмотрим алгорифм Эвклида, использующий деление: алгоритм, по натуральным числам $a$ и $b$
+возвращающий их наибольший общий делитель. Для точности укажем шаг этого алгоритма:
+$$(a_{n+1},b_{n+1}) := \left\{\begin{array}{ll}(b_n, a_n \textrm{ mod } b_n) & \text{если } a_n \ge b_n > 0\\
+                                               (b_n, a_n) &\text{если } a_n < b_n\end{array}\right.$$
+Формализуйте этот алгорифм и покажите, что он:
+\begin{enumerate}
+\item всегда заканчивается;
+\item итоговая пара чисел выглядит как $(\textrm{НОД}(a,b), 0)$
+\end{enumerate}
+
+\item Рассмотрим кольцо вычетов по модулю $p$:
+
+\begin{verbatim}
+TBD
+\end{verbatim}
+
+Определите в Аренде утверждение <<существует делитель нуля>> ($\exists a.\exists b.a \ne 0 \with b \ne 0 \with a \cdot b = 0$) и
+покажите, что если $p$ --- простое, то делителей нуля в \verb!QuotientRing p! нет.
+
+\item Рассмотрим список \verb!Data.List! и определим на нём операцию обмена: 
+$$swap(v,a,b)[n] = \left\{\begin{array}{ll}
+         a, &\textrm{если } n = b\\
+         b, &\textrm{если } n = a\\
+         v[n], &\textrm{иначе}\end{array}\right.$$
+
+Покажите, что $\forall v.\forall a.\forall b.swap(v,a,b) = swap(v,b,a)$
 \end{enumerate}
 
 \end{document}
