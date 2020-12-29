@@ -881,6 +881,31 @@ $$
 
 \end{enumerate}
 
+\section*{Домашнее задание №12: <<Формализация подтипов>>}
+
+Определим отношение <<быть подтипом>> так:
+
+\begin{center}\begin{tabular}{lp{1cm}l}
+$$\infer{\Gamma\vdash S <: S}{}$$&&
+$$\infer{\Gamma\vdash S<:T}{\Gamma\vdash S<:U\quad\quad\Gamma\vdash U<:T}$$\\ \\
+$$\infer{\Gamma \vdash S <: Top}{}$$&&
+$$\infer{\Gamma, X<:T \vdash X<:T}{}$$\\ \\
+$$\infer{\Gamma\vdash S_1\rightarrow S_2 <: T_1\rightarrow T_2}{\Gamma\vdash T_1 <: S_1 \quad\quad \Gamma\vdash S_2 <: T_2}$$&&
+$$\infer{\Gamma\vdash\forall X <: U_1.S_2 <: \forall X <: U_1.T_2}{\Gamma,X<:U_1\vdash S_2 <: T_2}$$
+\end{tabular}\end{center}
+
+\begin{enumerate}
+\item Покажите, что $X <: B, Y <: X \vdash B\rightarrow Y <: X \rightarrow B$ 
+
+\item Определим $\neg S ::= \forall X <: S. X$. Покажите, что
+$\Gamma\vdash\neg S <: \neg T$ тогда и только тогда, когда
+$\Gamma\vdash S <: T$.
+
+\item Введём пару: $Pair\ T_1\ T_2 ::= \forall X. (T_1 \rightarrow T_2 \rightarrow X) \rightarrow X$.
+Покажите, что $$\infer{\Gamma\vdash Pair\ S_1\ S_2 <: Pair\ T_1\ T_2}{\Gamma\vdash S_1 <: T_1\quad\quad\Gamma\vdash S_2 <: T_2}$$
+
+\item Определите аналогичным образом алгебраический тип (тип-сумму) и покажите аналогичное свойство.
+\end{enumerate}
 
 \section*{Задания на баллы}
 Каждое задание будет оценено в 10 баллов, сдавать можно любые, в любой момент. Решением является
