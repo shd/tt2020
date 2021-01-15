@@ -161,3 +161,19 @@ https://telegra.ph/HoTT-dlya-chajnikov-09-09
 + Edsko de Vries, Rinus Plasmeijer, David M Abrahamson, Uniqueness Typing Simplified.
 Implementation and Application of Functional Languages, 19th International Workshop, 
 IFL 2007, Freiburg, Germany, September 27-29, 2007.
+
+## Лекция 14
+### Подтипы, система F_<:
++ Отношение <:
++ Система F_<:
++ Ядерная и полная система F_<:
+### Где почитать
++ Бенджамин Пирс, Типы в языках программирования. Издательство «Лямбда пресс» & «Добросвет». Москва, 2011
+
+## Лекция 15
+### Парадокс Жирара
++ Парадокс Бурали-Форте
++ Парадоксальные универсумы, проявление парадокса Бурали-Форте при их существовании.
++ Построение парадоксальных универсумов в системе U, общая идея
+### Где почитать
++ Antonius J.C. Hurkens, A simplification of Girard's paradox.
